@@ -1,0 +1,74 @@
+---
+- name: Build, transfer, and deploy Docker container
+  hosts: target_hosts
+  vars: 
+    temp_dir: "/tmp/dashboard-ui"
+    image_name: "dashboard-ui"
+  tasks:
+    - name: Build Docker image locally
+      delegate_to: localhost
+      command: docker build --platform=linux/amd64 -t {{ image_name }}:latest .
+      args:
+        chdir: ./
+      register: build_output
+
+    - name: Save the Docker image to a tar file locally
+      delegate_to: localhost
+      command: docker save -o {{ image_name }}.tar {{ image_name }}:latest
+      register: save_output
+
+    - name: Ensure directories exist
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - "{{ temp_dir }}"
+        - /var/log/tldr
+
+    - name: Transfer Docker image to remote host
+      copy:
+        src: "{{ image_name }}.tar"
+        dest: "{{ temp_dir }}/{{ image_name }}.tar"
+
+    - name: Copy .env file to remote host
+      copy:
+        src: .env
+        dest: "{{ temp_dir }}/.env"
+
+    - name: Deleting the docker image from local
+      delegate_to: localhost
+      file:
+        path: ./{{ image_name }}.tar
+        state: absent
+
+    - name: Deploy docker and cleanup
+      become: yes
+      block:
+      - name: Stop the running container if it exists
+        command: docker stop {{ image_name }}
+        ignore_errors: yes
+
+      - name: Remove the old container if it exists
+        command: docker rm -f {{ image_name }}
+        ignore_errors: yes
+
+      - name: Remove the old image if it exists
+        command: docker rmi -f {{ image_name }}
+        ignore_errors: yes
+
+      - name: Load Docker image on remote host
+        command: docker load -i {{ temp_dir }}/{{ image_name }}.tar
+
+      - name: Run the Docker container with environment variables
+        command: >
+          docker run -d --name {{ image_name }}
+          -v /var/log/tldr:/var/log/tldr
+          --env-file {{ temp_dir }}/.env
+          -p 4000:4000
+          {{ image_name }}:latest
+
+      - name: Clean up the transferred Docker image tar file
+        file:
+          path: "{{ temp_dir }}/{{ image_name }}.tar"
+          state: absent
