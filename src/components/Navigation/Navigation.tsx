@@ -134,9 +134,7 @@ function Navigation() {
       <div className="flex gap-10">
         <a
           href="/v2/overview"
-          className={`${
-            location.pathname === "/v2/overview" ? "opacity-100" : "opacity-25"
-          } hover:opacity-100 transition-opacity`}
+          className={`hover:opacity-100 transition-opacity opacity-25`}
         >
           <svg
             width="238"
@@ -153,11 +151,7 @@ function Navigation() {
         </a>
         <a
           href="/v2/highlights"
-          className={`${
-            location.pathname === "/v2/highlights"
-              ? "opacity-100"
-              : "opacity-25"
-          } hover:opacity-100 transition-opacity`}
+          className={`hover:opacity-100 transition-opacity opacity-25`}
         >
           <svg
             width="254"
@@ -174,9 +168,7 @@ function Navigation() {
         </a>
         <a
           href="/v2/clips"
-          className={`${
-            location.pathname === "/v2/clips" ? "opacity-100" : "opacity-25"
-          } hover:opacity-100 transition-opacity`}
+          className={`hover:opacity-100 transition-opacity opacity-25`}
         >
           <svg
             width="129"
@@ -194,9 +186,7 @@ function Navigation() {
 
         <a
           href="/v2/analytics"
-          className={`${
-            location.pathname === "/v2/analytics" ? "opacity-100" : "opacity-25"
-          } hover:opacity-100 transition-opacity`}
+          className={`hover:opacity-100 transition-opacity opacity-25`}
         >
           <svg
             width="246"
@@ -214,9 +204,7 @@ function Navigation() {
 
         <a
           href="/v2/referrals"
-          className={`${
-            location.pathname === "/v2/referrals" ? "opacity-100" : "opacity-25"
-          } hover:opacity-100 transition-opacity`}
+          className={`hover:opacity-100 transition-opacity opacity-25`}
         >
           <svg
             width="254"
