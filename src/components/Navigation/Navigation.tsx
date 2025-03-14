@@ -17,7 +17,10 @@ function Navigation() {
       <div className="flex">
         <div className="flex py-10 items-center flex-grow">
           <div className="flex gap-2 items-baseline mr-10">
-            <a href="" className="hover:animate-pulse transition-all">
+            <a
+              href="/v2/overview"
+              className="hover:animate-pulse transition-all"
+            >
               <svg
                 width="96"
                 height="26"
@@ -70,7 +73,7 @@ function Navigation() {
         <div className="flex items-center gap-5">
           <a
             href=""
-            className="h-[40px] flex rounded-full border-white text-white border items-center px-3 opacity-25 hover:opacity-100 transition-all"
+            className="h-[40px] flex rounded-full hover:text-glow border-white text-white glow border items-center px-3 opacity-25 hover:opacity-100 transition-all"
           >
             <svg
               width="16"
@@ -129,7 +132,12 @@ function Navigation() {
         </div>
       </div>
       <div className="flex gap-10">
-        <a href="#" className="opacity-25 hover:opacity-100 transition-opacity">
+        <a
+          href="/v2/overview"
+          className={`${
+            location.pathname === "/v2/overview" ? "opacity-100" : "opacity-25"
+          } hover:opacity-100 transition-opacity`}
+        >
           <svg
             width="238"
             height="50"
@@ -143,7 +151,14 @@ function Navigation() {
             />
           </svg>
         </a>
-        <a href="#" className="opacity-25 hover:opacity-100 transition-opacity">
+        <a
+          href="/v2/highlights"
+          className={`${
+            location.pathname === "/v2/highlights"
+              ? "opacity-100"
+              : "opacity-25"
+          } hover:opacity-100 transition-opacity`}
+        >
           <svg
             width="254"
             height="50"
@@ -157,7 +172,12 @@ function Navigation() {
             />
           </svg>
         </a>
-        <a href="#" className="opacity-25 hover:opacity-100 transition-opacity">
+        <a
+          href="/v2/clips"
+          className={`${
+            location.pathname === "/v2/clips" ? "opacity-100" : "opacity-25"
+          } hover:opacity-100 transition-opacity`}
+        >
           <svg
             width="129"
             height="50"
@@ -172,7 +192,12 @@ function Navigation() {
           </svg>
         </a>
 
-        <a href="#" className="opacity-25 hover:opacity-100 transition-opacity">
+        <a
+          href="/v2/analytics"
+          className={`${
+            location.pathname === "/v2/analytics" ? "opacity-100" : "opacity-25"
+          } hover:opacity-100 transition-opacity`}
+        >
           <svg
             width="246"
             height="50"
@@ -187,7 +212,12 @@ function Navigation() {
           </svg>
         </a>
 
-        <a href="#" className="opacity-25 hover:opacity-100 transition-opacity">
+        <a
+          href="/v2/referrals"
+          className={`${
+            location.pathname === "/v2/referrals" ? "opacity-100" : "opacity-25"
+          } hover:opacity-100 transition-opacity`}
+        >
           <svg
             width="254"
             height="50"

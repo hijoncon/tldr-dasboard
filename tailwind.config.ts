@@ -16,7 +16,10 @@ const config: Config = {
         highlight: "var(--highlight)",
         textBackground: "var(--textBackground)",
         text: "var(--text)",
-        textSecondary: "var(--textSecondary)"
+        textSecondary: "var(--textSecondary)",
+      },
+      boxShadow: {
+        "text-glow": "0 0 5px rgba(255, 255, 255, 1)",
       },
     },
   },
