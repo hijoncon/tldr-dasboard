@@ -44,7 +44,6 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    location.href = "/v2/overview";
     if (validateForm()) {
       try {
         const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`;
