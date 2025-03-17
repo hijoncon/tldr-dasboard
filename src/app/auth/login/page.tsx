@@ -54,7 +54,7 @@ export default function Login() {
           withCredentials: true,
         });
         setSuccessMsg("Login Successfull! Return to the extension.");
-        router.push("/home");
+        router.push("/v2/overview");
       } catch (error: any) {
         if (error.response) {
           setLoginErrors((prev) => ({
