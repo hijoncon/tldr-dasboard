@@ -31,7 +31,7 @@ export default function ReferralLayout({
         setProfilePic(res.profile_picture);
         return;
       }
-      router.push("/auth/login.html");
+      router.push("/auth/login");
     });
   }, []);
 
@@ -116,7 +116,7 @@ export default function ReferralLayout({
 
           {/* Menu */}
           <div className="flex flex-col md:pt-10 text-text justify-center">
-            <MenuItem href="/home.html" icon={WindowIcon} text="Dashboard" />
+            <MenuItem href="/home" icon={WindowIcon} text="Dashboard" />
             <MenuItem
               href="/home/referrals"
               icon={Academy}
@@ -124,12 +124,12 @@ export default function ReferralLayout({
               disabled={true}
             />
             <MenuItem
-              href="/referrals.html"
+              href="/referrals"
               icon={ListAltIcon}
               text="Referral Program"
             />
             <MenuItem
-              href="/home/settings.html"
+              href="/home/settings"
               icon={SettingsIcon}
               text="Account Settings"
             />

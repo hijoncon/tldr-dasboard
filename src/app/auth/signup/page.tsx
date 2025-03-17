@@ -68,7 +68,7 @@ export default function Signup() {
             "Content-Type": "application/json",
           },
         });
-        router.push("/auth/verify.html");
+        router.push("/auth/verify");
       } catch (error: any) {
         if (error.response) {
           console.error("Signup error:", error.response.data);
@@ -204,7 +204,7 @@ export default function Signup() {
           </button>
           <span className="flex w-full justify-center">
             Already have an account?
-            <Link className="font-bold" href={"/auth/login.html"}>
+            <Link className="font-bold" href={"/auth/login"}>
               Log in
             </Link>
           </span>

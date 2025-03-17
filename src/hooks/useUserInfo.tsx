@@ -14,11 +14,11 @@ export const useUserInfo = () => {
         if (res) {
           setUserInfo(res);
         } else {
-          router.push("/auth/login.html");
+          router.push("/auth/login");
         }
       } catch (error) {
         console.error("Failed to fetch user info:", error);
-        router.push("/auth/login.html");
+        router.push("/auth/login");
       } finally {
         setLoading(false);
       }

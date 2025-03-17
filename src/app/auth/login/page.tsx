@@ -140,13 +140,13 @@ export default function Login() {
             Log In
           </button>
           <span className="flex w-full justify-center">
-            <Link className="font-bold" href={"/auth/forgotPassword.html"}>
+            <Link className="font-bold" href={"/auth/forgotPassword"}>
               Forgot Password?
             </Link>
           </span>
           <span className="flex w-full justify-center">
             Don't have an account?
-            <Link className="font-bold" href={"/auth/signup.html"}>
+            <Link className="font-bold" href={"/auth/signup"}>
               Sign Up
             </Link>
           </span>

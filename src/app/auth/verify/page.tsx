@@ -51,7 +51,7 @@ export default function Verify() {
             "Content-Type": "application/json",
           },
         });
-        router.push("/auth/login.html");
+        router.push("/auth/login");
       } catch (error: any) {
         if (error.response) {
           setVerificationInputErrors((prev) => ({
@@ -157,7 +157,7 @@ export default function Verify() {
           </span>
           <span className="flex w-full justify-center">
             Already have an account?
-            <Link className="font-bold" href={"/auth/login.html"}>
+            <Link className="font-bold" href={"/auth/login"}>
               Log in
             </Link>
           </span>

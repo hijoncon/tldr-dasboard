@@ -227,7 +227,7 @@ export default function ForgotPassword() {
           </span>
           <span className="flex w-full justify-center">
             Already have an account?
-            <Link className="font-bold" href={"/auth/login.html"}>
+            <Link className="font-bold" href={"/auth/login"}>
               Log in
             </Link>
           </span>

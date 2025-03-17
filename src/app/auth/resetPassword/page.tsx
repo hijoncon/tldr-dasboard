@@ -53,7 +53,7 @@ export default function ResetPassword() {
             "Content-Type": "application/json",
           },
         });
-        router.push("/auth/login.html");
+        router.push("/auth/login");
       } catch (error: any) {
         if (error.response) {
           console.error("Reset Password error:", error.response.data);
@@ -136,7 +136,7 @@ export default function ResetPassword() {
           </button>
           <span className="flex w-full justify-center">
             Already have an account?
-            <Link className="font-bold" href={"/auth/login.html"}>
+            <Link className="font-bold" href={"/auth/login"}>
               Log in
             </Link>
           </span>
