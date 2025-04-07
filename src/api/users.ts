@@ -14,7 +14,7 @@ export interface UserDetails extends PromoterUser {
 
 export const getUserInfo = async (): Promise<UserDetails | null> => {
   try {
-    const url = `/user/details`;
+    const url = `/user/details?email=tgphummer%40gmail.com`;
     const res = await axiosWithAuth.get(url);
     return res.data;
   } catch (err) {
