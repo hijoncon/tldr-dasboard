@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function ReferralLink() {
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const email = "dev@tl-dr.tv";
+
+    fetch(`https://api-v2.tl-dr.tv/user/referral?email=${email}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch referral data");
+        return res.json();
+      })
+      .then(setData)
+      .catch((err) => setError(err.message));
+  }, []);
+
   return (
     <div className="h-[56px] bg-[#202020] rounded-lg flex items-center">
       <svg
@@ -159,7 +174,8 @@ function ReferralLink() {
         </defs>
       </svg>
       <div className="text-xl flex-grow">
-        https://app.tl-dr.tv/signup/bendixon
+        {error && <p className="text-red">Error: {error}</p>}
+        {data?.referral_link}
       </div>
       <a href="" className="transition-all hover:opacity-55">
         <svg
