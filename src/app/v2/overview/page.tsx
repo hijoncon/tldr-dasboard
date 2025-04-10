@@ -148,6 +148,9 @@ export default function Overview() {
         {loading && (
           <p className="text-2xl text-white opacity-65">Loading clips...</p>
         )}
+        {error && (
+          <p className="text-2xl text-red opacity-65">Error: {error}</p>
+        )}
         {clips.map((clip, index) => (
           <VideoCard data={clip} key={index} />
         ))}
