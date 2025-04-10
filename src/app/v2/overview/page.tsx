@@ -10,7 +10,6 @@ import VideoCard from "@/components/VideoCard/VideoCard";
 import { useEffect, useState } from "react";
 
 type Clip = any; // Replace with actual structure if you know it
-type Stream = { id: string };
 
 export default function Overview() {
   const [clips, setClips] = useState<Clip[]>([]);
