@@ -145,6 +145,9 @@ export default function Overview() {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4 pb-20">
+        {loading && (
+          <p className="text-2xl text-white opacity-65">Loading clips...</p>
+        )}
         {clips.map((clip, index) => (
           <VideoCard data={clip} key={index} />
         ))}
