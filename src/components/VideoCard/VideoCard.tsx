@@ -1,16 +1,38 @@
 import React from "react";
 import { ArrowIcon, VideoClipIcon } from "../ExportIcons";
+import Image from "next/image";
 
-function VideoCard() {
+export interface Clip {
+  data: {
+    id: number;
+    start_time: number;
+    title: string;
+    thumbnail: string;
+    file: string;
+    views: number;
+    kind: "voice" | string; // You can replace `string` with more options if known
+  };
+}
+
+function VideoCard({ data }: Clip) {
   return (
     <div className="border-[#222222] bg-[#161616] border p-5 rounded-xl flex-1">
-      <div className="h-[220px] bg-purple-950 rounded-md opacity-25 mb-5" />
+      <div
+        className=" bg-purple-950 rounded-md opacity-100 mb-5 hover:opacity-75 transition-opacity"
+        style={{ width: "100%", height: "222px", position: "relative" }}
+      >
+        <Image
+          src={data.thumbnail}
+          alt="Example"
+          fill // This makes it cover the container
+          style={{ objectFit: "cover" }}
+          sizes="100vw" // Optional: helps with responsive images
+        />
+      </div>
       <div className="mb-5">
         <VideoClipIcon />
       </div>
-      <div className="mb-5">
-        MayzeFPS and his girlfriend share a High-Five for Muscles!
-      </div>
+      <div className="mb-5">{data.title}</div>
       <svg
         width="292"
         height="26"

@@ -7,8 +7,61 @@ import ReferralsCard from "@/components/ReferralsCard/ReferralsCard";
 import ReferralLink from "@/components/ReferralLink/ReferralLink";
 import BookmarkCard from "@/components/BookmarkCard/BookmarkCard";
 import VideoCard from "@/components/VideoCard/VideoCard";
+import { useEffect, useState } from "react";
 
-const Overview = () => {
+type Clip = any; // Replace with actual structure if you know it
+type Stream = { id: string };
+
+export default function Overview() {
+  const [clips, setClips] = useState<Clip[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const email = "dev@tl-dr.tv";
+
+  useEffect(() => {
+    const fetchClips = async () => {
+      try {
+        // Step 1: Get stream list
+        const streamRes = await fetch(
+          `https://api-v2.tl-dr.tv/stream/list/${email}`
+        );
+        if (!streamRes.ok) throw new Error("Failed to load stream list");
+
+        const streams: any[] = await streamRes.json();
+
+        // Step 2: Fetch clips in parallel
+        const clipPromises = streams.map(async (stream) => {
+          try {
+            const res = await fetch(
+              `https://api-v2.tl-dr.tv/stream/clips/${stream.stream_id}`
+            );
+            if (!res.ok) throw new Error(`Failed for ID ${stream.stream_id}`);
+            return await res.json();
+          } catch (err) {
+            return {
+              error: true,
+              streamId: stream.stream_id,
+              message: (err as Error).message,
+            };
+          }
+        });
+
+        const allClips = await Promise.all(clipPromises);
+        setClips(allClips);
+      } catch (err) {
+        setError((err as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClips();
+  }, [email]);
+
+  // if (loading) return <p>Loading clips...</p>;
+  // if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+
   return (
     <div className="text-white">
       <div className="flex gap-5 py-10">
@@ -93,12 +146,10 @@ const Overview = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4 pb-20">
-        {Array.from({ length: 21 }).map((_, index) => (
-          <VideoCard key={index} />
+        {clips.map((clip, index) => (
+          <VideoCard data={clip} key={index} />
         ))}
       </div>
     </div>
   );
-};
-
-export default Overview;
+}
